@@ -12,11 +12,14 @@ public class User extends Model {
     @Id
 	public Long id;
 	
+	@Required
     public String name;
 	
 	// Dates and times will be in standard UNIX timestamps
 	// to make time math easier
 	public Long lastLoggedIn;
+	
+	@Required
 	public String emailAddress;
 	public Boolean allowsNotifications;
 	
@@ -24,6 +27,7 @@ public class User extends Model {
 	// Example: Central Time will be +6 hours 
 	public Integer timeZone;
 	
+	@Required
 	public String passwordHash;
 	public String authToken;
 	public String hashSalt;
@@ -33,7 +37,7 @@ public class User extends Model {
 	);
 	
 	public static List<User> all() {
-		return new ArrayList<User>();
+		return find.all();
 	}
 
 	public static void create(User user) {
