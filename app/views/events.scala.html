@@ -1,0 +1,28 @@
+@(events: List[Event], eventForm: Form[Event])
+
+@import helper._
+
+@main("Events") {
+    
+    <h1>@events.size() event(s)</h1>
+    
+    <ul>
+        @for(event <- events) {
+            <li>
+                @event.name 
+
+                @form(routes.Events.deleteEvent(event.id)) {
+                    <input type="submit" value="Delete">
+                }
+            </li>
+        }
+    </ul>
+    
+    <h2>Add a new event</h2>
+    
+    @form(routes.Events.newEvent()) {
+        @inputText(eventForm("name"))
+		
+        <input type="submit" value="Create">
+    } 
+}

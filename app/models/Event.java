@@ -12,6 +12,7 @@ public class Event extends Model {
 	@Id
 	public Long id;
 	
+	@Required
  	public String name;
 	
 	// Dates and times will be in standard UNIX timestamps
@@ -36,7 +37,7 @@ public class Event extends Model {
 	);
 	
 	public static List<Event> all() {
-		return new ArrayList<Event>();
+		return find.all();
 	}
 
 	public static void create(Event event) {
