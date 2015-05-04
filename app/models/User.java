@@ -32,6 +32,9 @@ public class User extends Model {
 	public String authToken;
 	public String hashSalt;
 	
+	@OneToMany
+	private List<Event> eventList;
+	
 	public static Finder<Long, User> find = new Finder(
 	    Long.class, User.class
 	);
