@@ -30,6 +30,9 @@ public class Event extends Model {
 	// We will wait to implement Tags.
 	// public String tags;
 	
+	@ManyToOne
+	private User user;
+	
 	public String color;
 	
 	public static Finder<Long, Event> find = new Finder(

@@ -37,6 +37,9 @@ public class User extends Model {
 	public String authToken;
 	public Long authTokenExpirationDate;
 	
+	@OneToMany
+	private List<Event> eventList;
+	
 	public static Finder<Long, User> find = new Finder(
 	    Long.class, User.class
 	);
