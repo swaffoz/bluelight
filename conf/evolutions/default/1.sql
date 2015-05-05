@@ -12,6 +12,7 @@ create table event (
   is_repeating              boolean,
   repeats_every             bigint,
   notifies_user             boolean,
+  user_id                   bigint,
   color                     varchar(255),
   constraint pk_event primary key (id))
 ;
@@ -33,6 +34,8 @@ create sequence event_seq;
 
 create sequence user_seq;
 
+alter table event add constraint fk_event_user_1 foreign key (user_id) references user (id) on delete restrict on update restrict;
+create index ix_event_user_1 on event (user_id);
 
 
 
