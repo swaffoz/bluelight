@@ -7,6 +7,7 @@ GET     /                           controllers.Application.index()
 
 # Users
 GET		/users						controllers.Users.users()
+GET 	/users/:id/events	controllers.Users.getEvents(id: Long)
 POST	/users						controllers.Users.newUser()
 POST	/users/:id/delete			controllers.Users.deleteUser(id: Long)
 
