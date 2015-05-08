@@ -38,7 +38,7 @@ public class User extends Model {
 	public Long authTokenExpirationDate;
 	
 	@OneToMany
-	private List<Event> eventList;
+	public List<Event> eventList;
 	
 	public static Finder<Long, User> find = new Finder(
 	    Long.class, User.class
@@ -61,7 +61,8 @@ public class User extends Model {
 		user.save();
 		return user;
 	}
-
+	
+	
 	public static void delete(Long id) {
 		find.ref(id).delete();
 	}
