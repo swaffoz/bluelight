@@ -10,7 +10,6 @@
         @for(event <- events) {
             <li>
                 @event.name 
-
                 @form(routes.Events.deleteEvent(event.id)) {
                     <input type="submit" value="Delete">
                 }

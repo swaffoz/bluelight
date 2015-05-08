@@ -31,7 +31,7 @@ public class Event extends Model {
 	// public String tags;
 	
 	@ManyToOne
-	private User user;
+	public User user;
 	
 	public String color;
 	
