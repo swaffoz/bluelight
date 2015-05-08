@@ -3,6 +3,7 @@ package controllers;
 import play.*;
 import play.mvc.*;
 import play.data.*;
+import play.libs.Json ;
 import models.*;
 import helpers.*;
 
@@ -34,6 +35,15 @@ public class Users extends Controller {
 	public static Result deleteUser(Long id) {
 		User.delete(id);
 		return redirect(routes.Users.users());
+	}
+	
+	public static Result getEvents(Long id) {
+		User user = User.find.byId(id) ; 
+		if ( user != null ) {
+			return ok(Json.toJson(user.eventList)) ; 
+		}
+		Logger.info( "Returning bad request" ) ; 
+		return badRequest( ) ; 
 	}
 	
 	@Security.Authenticated(SecurityHelper.class)
