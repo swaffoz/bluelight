@@ -26,7 +26,8 @@ create table user (
   time_zone                 integer,
   password_hash             varchar(255),
   auth_token                varchar(255),
-  hash_salt                 varchar(255),
+  auth_token_expiration_date bigint,
+  constraint uq_user_email_address unique (email_address),
   constraint pk_user primary key (id))
 ;
 
