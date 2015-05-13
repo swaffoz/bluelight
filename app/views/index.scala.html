@@ -1,7 +1,61 @@
-@(message: String)
+@(userForm: Form[User])
 
-@main("Welcome to Play") {
+@import helper._
 
-    @play20.welcome(message, style = "Java")
-
+@main("") {
+	<h1 class="logo">Bluelight</h1>
+	<h2 class="logo">A Calendar Made for People</h2>
+	
+	<div class="center" id="welcomeButtonContainer">
+		<!---<form id="logInForm" action="/login" method="POST">-->
+	    @form(routes.Users.authenticateUser(), 'id -> "logInForm") {
+			@inputText(userForm("emailAddress"),
+				'_showConstraints -> false,
+    			'_label -> "Email: ")
+			@inputPassword(userForm("passwordHash"),
+				'_showConstraints -> false,
+    			'_label -> "Password: ")
+	        <input type="submit" value="Sign Up">
+	    }
+		<!--<form id="logInForm" action="/user/events" method="POST">
+			Email:<br>
+			<input type="text" name="emailAddress">
+			<br>
+			Password:<br>
+			<input type="password" name="passwordHash">
+			<br>
+			<input type="submit" value="Log In">
+			<br>
+		</form>-->
+	
+		<!---<form id="signUpForm" action="/signup" method="POST">-->
+	    @form(routes.Users.newUser(), 'id -> "signUpForm") {
+			@inputText(userForm("name"),
+				'_showConstraints -> false,
+    			'_label -> "Name: ")
+			@inputText(userForm("emailAddress"),
+				'_showConstraints -> false,
+    			'_label -> "Email: ")
+			@inputPassword(userForm("passwordHash"),
+				'_showConstraints -> false,
+    			'_label -> "Password: ")
+	        <input type="submit" value="Sign Up">
+	    }
+		<!--<form id="signUpForm" action="/user/events" method="POST">
+			Name:<br>
+			<input type="text" name="name">
+			<br>
+			Email:<br>
+			<input type="text" name="emailAddress">
+			<br>
+			Password:<br>
+			<input type="password" name="passwordHash">
+			<br>
+			<input type="submit" value="Sign Up">
+			<br>
+		</form>-->
+		
+		<a id="logInButton" href="javascript:void(0)">Log In</a>
+		<a id="signUpButton" href="javascript:void(0)">Sign Up</a>
+	</div>
 }

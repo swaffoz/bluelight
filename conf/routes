@@ -3,14 +3,15 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
+GET     /                           controllers.Users.index()
 
 # Users
 GET		/users						controllers.Users.users()
-GET 	/users/:id/events	controllers.Users.getEvents(id: Long)
-POST	/users						controllers.Users.newUser()
+GET 	/users/:id/events			controllers.Users.getEvents(id: Long)
+POST	/login						controllers.Users.authenticateUser()
+POST	/signup						controllers.Users.newUser()
 POST	/users/:id/delete			controllers.Users.deleteUser(id: Long)
-
+GET		/users/events				controllers.Users.testEvents()
 # User Security Testing URL
 GET		/users/secrets				controllers.Users.testSecrets()
 
