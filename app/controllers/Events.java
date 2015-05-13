@@ -32,4 +32,8 @@ public class Events extends Controller {
 		Event.delete(id);
 		return redirect(routes.Events.events());
 	}
+	
+	public static Result testEvents() { 
+		return ok(views.html.eventsTest.render());
+	}
 }
