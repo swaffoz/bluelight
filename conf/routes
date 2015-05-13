@@ -12,8 +12,6 @@ POST	/login						controllers.Users.authenticateUser()
 POST	/signup						controllers.Users.newUser()
 POST	/users/:id/delete			controllers.Users.deleteUser(id: Long)
 GET		/users/events				controllers.Users.testEvents()
-# User Security Testing URL
-GET		/users/secrets				controllers.Users.testSecrets()
 
 # Events
 GET		/events						controllers.Events.events()

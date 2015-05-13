@@ -24,33 +24,26 @@ public class Users extends Controller {
 	public static Result newUser() {
 		Form<User> filledForm = userForm.bindFromRequest();
 		if(filledForm.hasErrors()) {
-			return badRequest(views.html.users.render(User.all(), filledForm));
+			//return badRequest(views.html.users.render(User.all(), filledForm));
 		} 
 		
 		User user = User.create(filledForm.get().name, filledForm.get().emailAddress, filledForm.get().passwordHash);
 		
-		String authToken = filledForm.get().authenticate();
-		//response().setCookie(SecurityHelper.AUTH_TOKEN, authToken);
+		//String authToken = filledForm.get().authenticate();
 		
-		return ok(authToken);
-		//return redirect(routes.Users.users());  
+		//return ok(authToken);
+		return redirect(routes.Users.testEvents());
 	}
 	
 	public static Result authenticateUser() {
 		Form<User> filledForm = userForm.bindFromRequest();
 		if(filledForm.hasErrors()) {
-			return badRequest(views.html.users.render(User.all(), filledForm));
+			//return badRequest(views.html.users.render(User.all(), filledForm));
 		} 
 		
-		String authToken = filledForm.get().authenticate();
-		//response().setCookie(SecurityHelper.AUTH_TOKEN, authToken);
-		Logger.debug("authtoken = " + authToken);
-		if (authToken != null) {
-			return ok(authToken);
-		} else {
-			return redirect("/");
-		}
-		//return redirect(routes.Users.users());  
+		//String authToken = filledForm.get().authenticate();
+		//Logger.debug("authtoken = " + authToken);
+		return redirect(routes.Users.testEvents());
 	}
 
 	public static Result deleteUser(Long id) {

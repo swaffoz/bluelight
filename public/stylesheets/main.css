@@ -22,6 +22,10 @@ h2.logo {
 	margin-bottom: 60px;
 }
 
+dd {
+	margin-left: 0;
+}
+
 a, a:visited {
 	text-decoration: none;
 	color: #ecf0f1;
@@ -51,4 +55,9 @@ a:active {
 }
 
 #logInForm input, #signUpForm input {
+}
+
+#calendar {
+	max-width: 900px;
+	margin: 0 auto;
 }
