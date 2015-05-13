@@ -3,6 +3,7 @@ $(window).load(preparePage);
 function preparePage() {
   $(".logo").addClass("animated bounceInUp");
   $("#welcomeButtonContainer").addClass("animated bounceInUp");
+  $("#calendar").addClass("animated bounceInUp");
   $("#logInButton").click(onLogInButtonClicked);
   $("#signUpButton").click(onSignUpButtonClicked);
 }
