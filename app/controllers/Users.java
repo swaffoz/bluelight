@@ -67,10 +67,6 @@ public class Users extends Controller {
 		return badRequest(); 
 	}
 	
-	public static Result testEvents() { 
-		return ok(views.html.eventsTest.render());
-	}
-	
 	@With(ActionHelper.class)
 	public static Result testSecrets() {
 		return ok("You found me!");

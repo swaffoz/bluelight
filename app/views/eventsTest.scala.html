@@ -1,3 +1,13 @@
+@(eventForm: Form[Event])
+
+@import helper._
+
 @main("") {
+	<div id = "Create" style = "visibility: hidden">
+		@form(routes.Events.newEvent()) {
+        @inputText(eventForm("name"))
+		
+        <input type="submit" value="Create">
+    } </div>
 	<div id="calendar" class="fc fc-ltr fc-unthemed"></div>
 }

@@ -3,22 +3,22 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Users.index()
+GET     /                          	 	controllers.Users.index()
 
 # Users
 GET		/users						controllers.Users.users()
-GET 	/users/:id/events			controllers.Users.getEvents(id: Long)
+GET 	/users/:id/events		controllers.Users.getEvents(id: Long)
 POST	/login						controllers.Users.authenticateUser()
 POST	/signup						controllers.Users.newUser()
 POST	/users/:id/delete			controllers.Users.deleteUser(id: Long)
-GET		/users/events				controllers.Users.testEvents()
+GET		/users/events				controllers.Events.testEvents()
 # User Security Testing URL
-GET		/users/secrets				controllers.Users.testSecrets()
+GET		/users/secrets			controllers.Users.testSecrets()
 
 # Events
 GET		/events						controllers.Events.events()
 POST	/events						controllers.Events.newEvent()
-POST	/events/:id/delete			controllers.Events.deleteEvent(id: Long)
+POST	/events/:id/delete		controllers.Events.deleteEvent(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
