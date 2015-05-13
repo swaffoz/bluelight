@@ -13,6 +13,10 @@ public class Users extends Controller {
 
 	static Form<User> userForm = Form.form(User.class);
 
+    public static Result index() {
+        return ok(index.render(userForm));
+    }
+
     public static Result users() {
         return ok(views.html.users.render(User.all(), userForm));
     }
@@ -31,6 +35,23 @@ public class Users extends Controller {
 		return ok(authToken);
 		//return redirect(routes.Users.users());  
 	}
+	
+	public static Result authenticateUser() {
+		Form<User> filledForm = userForm.bindFromRequest();
+		if(filledForm.hasErrors()) {
+			return badRequest(views.html.users.render(User.all(), filledForm));
+		} 
+		
+		String authToken = filledForm.get().authenticate();
+		//response().setCookie(SecurityHelper.AUTH_TOKEN, authToken);
+		Logger.debug("authtoken = " + authToken);
+		if (authToken != null) {
+			return ok(authToken);
+		} else {
+			return redirect("/");
+		}
+		//return redirect(routes.Users.users());  
+	}
 
 	public static Result deleteUser(Long id) {
 		User.delete(id);
@@ -40,13 +61,17 @@ public class Users extends Controller {
 	public static Result getEvents(Long id) {
 		User user = User.find.byId(id) ; 
 		if ( user != null ) {
-			return ok(Json.toJson(user.eventList)) ; 
+			return ok(Json.toJson(user.eventList)); 
 		}
-		Logger.info( "Returning bad request" ) ; 
-		return badRequest( ) ; 
+		Logger.info( "Returning bad request" ); 
+		return badRequest(); 
 	}
 	
-	@Security.Authenticated(SecurityHelper.class)
+	public static Result testEvents() { 
+		return ok(views.html.eventsTest.render());
+	}
+	
+	@With(ActionHelper.class)
 	public static Result testSecrets() {
 		return ok("You found me!");
 	}
