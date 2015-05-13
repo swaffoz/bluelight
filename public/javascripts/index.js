@@ -46,10 +46,21 @@ function prepareCalendar() {
 		editable: true,
 		eventLimit: true, 
 		eventColor: "#9b59b6",
+		dayClick: function(date, jsEvent, view) {
+			$(".fc-selected-day").removeClass("fc-selected-day");
+			$(this).addClass("fc-selected-day");
+			$(".webui-popover").remove();
+			$(this).webuiPopover({title: 'New Event', 
+								  animation: 'pop',
+								  cache: false,
+								  closeable: true,
+								  content: 'Title: <input data-event-date="' + date + '" id="newEventTitle"><br><br><a href="javascript:void(0)" id="submitNewEvent">Create</a>'});
+			$("#submitNewEvent").click(onSubmitNewEventClicked);
+		},
 		events: [
 			{
 				title: 'All Day Event',
-				start: '2015-02-01'
+				start: '2015-05-13'
 			},
 			{
 				title: 'Long Event',
@@ -65,6 +76,11 @@ function prepareCalendar() {
 				id: 999,
 				title: 'Repeating Event',
 				start: '2015-02-16T16:00:00'
+			},
+			{
+				id: 999,
+				title: 'Repeating Event',
+				start: '2015-05-16T16:00:00'
 			},
 			{
 				title: 'Conference',
@@ -89,13 +105,26 @@ function prepareCalendar() {
 				start: '2015-02-12T17:30:00'
 			},
 			{
+				title: 'Happy Hour',
+				start: '2015-05-10T17:30:00'
+			},
+			{
 				title: 'Dinner',
 				start: '2015-02-12T20:00:00'
 			},
 			{
 				title: 'Birthday Party',
 				start: '2015-02-13T07:00:00'
+			},
+			{
+				title: 'Bowling Party',
+				start: '2015-05-07T07:00:00'
 			}
 		]
 	});
+}
+
+function onSubmitNewEventClicked(ev) {
+	var eventInput = $("#newEventTitle");
+	$('#calendar').fullCalendar.events.push({title: $(eventInput).val(), start: $(eventInput).data('event-date')})
 }
